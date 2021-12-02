@@ -24,7 +24,9 @@ export class postOutputComponent implements OnInit, OnDestroy{
     this.subscriber=this.postService.getPostUpdated()
     .subscribe((posts:Post[])=>{
       this.posts=posts;
+      console.log(this.posts)
     });
+    console.log(this.subscriber);
 
   }
   ngOnDestroy(){

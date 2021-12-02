@@ -16,7 +16,7 @@ export class PostsService{
     const post:Post=postInput;
     this.posts.push(post);
     this.postsUpdated.next([...this.posts])
-    
+
 
   }
 }
