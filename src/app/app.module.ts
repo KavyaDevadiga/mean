@@ -13,7 +13,7 @@ import {MatExpansionModule} from '@angular/material/expansion';
 import { AppComponent } from './app.component';
 import { postcreatecomponent } from './posts/post-create/post-create.component';
 
-
+// https://medium.com/mighty-ghost-hack/how-to-deploy-angular-app-on-github-61261c0891e0
 
 @NgModule({
   declarations: [
