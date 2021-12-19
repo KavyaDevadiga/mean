@@ -15,16 +15,24 @@
 
 
 <mat-card>
-  <form (ngSubmit)="onAddPost(inputform)" #inputform="ngForm">
+  <mat-spinner *ngIf="isloading"></mat-spinner>
+  <form [formGroup]="form" (ngSubmit)="onAddPost()" *ngIf="!isloading">
     <mat-form-field appearance="fill">
       <mat-label>Enter Post Title</mat-label>
-      <input matInput type="text" placeholder="title" name="title" #title="ngModel" required ngModel>
-      <mat-error *ngIf="title.invalid">Please Enter the title</mat-error>
+      <input formControlName="title" matInput type="text" placeholder="title" name="title"   >
+      <mat-error *ngIf="form.get('title').invalid">Please Enter the title</mat-error>
     </mat-form-field>
+    <div class="imgPreview" *ngIf="imageURL !== '' && imageURL">
+      <img [src]="imageURL" [alt]="form.value.title" >
+    </div>
+    <div>
+      <button mat-button mat-stroked-button (click)="filePicker.click()" type="button">Upload Image</button>
+      <input style="visibility: hidden;" type="file" #filePicker (change)="onImageSelect($event)">
+    </div>
     <mat-form-field appearance="fill">
       <mat-label>Enter Post Content</mat-label>
-      <textarea matInput rows="5" name="content" #content="ngModel" placeholder="content" required ngModel></textarea>
-      <mat-error *ngIf="content.invalid">Please Enter the Content</mat-error>
+      <textarea formControlName="content" matInput rows="5" name="content"  placeholder="content" ></textarea>
+      <mat-error *ngIf="form.get('content').invalid">Please Enter the Content</mat-error>
 
     </mat-form-field>
     <button color="accent" mat-raised-button type="submit">Save Post</button>

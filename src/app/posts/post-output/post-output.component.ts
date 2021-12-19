@@ -13,24 +13,31 @@ export class postOutputComponent implements OnInit, OnDestroy{
   // @Input() posts:Post[]= [];
   posts:Post[]= [];
   subscriber:Subscription=new Subscription();
-
+  isloading=false;
   constructor(public postService:PostsService){
 
     console.log(postService);
 
   }
   ngOnInit(){
-    this.posts=this.postService.getPosts();
+    this.isloading=true;
+    this.postService.getPosts();
     this.subscriber=this.postService.getPostUpdated()
     .subscribe((posts:Post[])=>{
+      this.isloading=false;
       this.posts=posts;
       console.log(this.posts)
     });
     console.log(this.subscriber);
 
   }
+  postdelete(id:string){
+    this.postService.deletePost(id);
+
+  }
   ngOnDestroy(){
     this.subscriber.unsubscribe();
   }
+
 
 }

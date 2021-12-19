@@ -1,0 +1,14 @@
+a
+{
+  text-decoration: none;
+  color:antiquewhite;
+  display:block;
+  padding:20px;
+
+}
+li{
+  float: left;
+  padding-right: 10px;
+  list-style-type:none;
+}
+
